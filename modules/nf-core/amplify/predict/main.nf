@@ -23,11 +23,14 @@ process AMPLIFY_PREDICT {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def custom_model_dir = model_dir ? "-md ${model_dir}" : ""
+    def trimmed_faa = "${faa.baseName}.trimmed.${faa.extension}"
     """
+    # Trim stop codon (*)
+    sed 's/*\$//g' ${faa} > ${trimmed_faa}
     AMPlify \\
         $args \\
         ${custom_model_dir} \\
-        -s '${faa}'
+        -s '${trimmed_faa}'
 
     #rename output, because tool includes date and time in name
     mv *.tsv ${prefix}.tsv
