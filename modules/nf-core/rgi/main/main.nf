@@ -4,7 +4,7 @@ process RGI_MAIN {
 
     conda "bioconda::rgi=5.2.1"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/rgi:5.2.1--pyha8f3691_2':
+        'https://depot.galaxyproject.org/singularity/rgi:6.0.3--pyha8f3691_1':
         'biocontainers/rgi:5.2.1--pyha8f3691_2' }"
 
     input:
