@@ -4,14 +4,14 @@ process ANTISMASH_ANTISMASHLITE {
 
     conda "bioconda::antismash-lite=6.1.1"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/antismash-lite:6.1.1--pyhdfd78af_0' :
+        'https://depot.galaxyproject.org/singularity/antismash-lite:7.1.0--pyhdfd78af_0' :
         'biocontainers/antismash-lite:6.1.1--pyhdfd78af_0' }"
 
     containerOptions {
         workflow.containerEngine == 'singularity' ?
-        "-B $antismash_dir:/usr/local/lib/python3.8/site-packages/antismash" :
+        "-B $antismash_dir:/usr/local/lib/python3.10/site-packages/antismash" :
         workflow.containerEngine == 'docker' ?
-        "-v \$PWD/$antismash_dir:/usr/local/lib/python3.8/site-packages/antismash" :
+        "-v \$PWD/$antismash_dir:/usr/local/lib/python3.10/site-packages/antismash" :
         ''
         }
 
